@@ -1,10 +1,15 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Vue from 'vue';
+import LoadScript from 'vue-plugin-load-script';
 
-Vue.config.productionTip = false
+import App from './App.vue';
+import router from './router';
+import vuetify from './plugins/vuetify';
+
+Vue.config.productionTip = false;
+Vue.use(LoadScript);
 
 new Vue({
   router,
-  render: h => h(App)
-}).$mount('#app')
+  vuetify,
+  render: (h) => h(App),
+}).$mount('#app');
