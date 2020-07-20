@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <v-container fluid>
+    <div id="map" style="width:100%;height:100vw;"></div>
+  </v-container>
 </template>
 
 <script>
@@ -15,7 +17,7 @@ const MapTypeId = {
   TERRAIN: 7,
   BICYCLE: 8,
   BICYCLE_HYBRID: 9,
-  USE_DISTRICT: 10,
+  USE_DISTRICT: 10
 };
 const EVENTS = [
   "center_changed",
@@ -31,55 +33,55 @@ const EVENTS = [
   "dragend",
   "idle",
   "tilesloaded",
-  "maptypeid_changed",
+  "maptypeid_changed"
 ];
 export default {
   name: "VueDaumMap",
   props: {
     libraries: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
 
     level: {
       type: Number,
-      default: undefined,
+      default: undefined
     },
     mapTypeId: {
       type: Number,
-      default: undefined,
+      default: undefined
     },
     draggable: {
       type: Boolean,
-      default: undefined,
+      default: undefined
     },
     scrollwheel: {
       type: Boolean,
-      default: undefined,
+      default: undefined
     },
     disableDoubleClick: {
       type: Boolean,
-      default: undefined,
+      default: undefined
     },
     disableDoubleClickZoom: {
       type: Boolean,
-      default: undefined,
+      default: undefined
     },
     projectionId: {
       type: String,
-      default: undefined,
+      default: undefined
     },
     tileAnimation: {
       type: Boolean,
-      default: undefined,
+      default: undefined
     },
     keyboardShortcuts: {
       type: [Boolean, Object],
-      default: undefined,
-    },
+      default: undefined
+    }
   },
   data: () => ({
-    map: null,
+    map: null
   }),
   mounted() {
     loadScriptOnce(
@@ -93,7 +95,7 @@ export default {
           this.$emit("load", this.map);
         });
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
   },
@@ -114,8 +116,8 @@ export default {
           new daum.maps.LatLng(33.450701, 126.570667)
         );
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
   methods: {
     render() {
@@ -131,7 +133,7 @@ export default {
         disableDoubleClickZoom: this.disableDoubleClickZoom,
         projectionId: this.projectionId,
         tileAnimation: this.tileAnimation,
-        keyboardShortcuts: this.keyboardShortcuts,
+        keyboardShortcuts: this.keyboardShortcuts
       };
       // eslint-disable-next-line
       this.map = new daum.maps.Map(this.$el, options); //지도 생성 및 객체 리턴
@@ -139,7 +141,7 @@ export default {
     bindEvents() {
       const handlers = {
         bounds_changed: this.onChange,
-        idle: this.onChange,
+        idle: this.onChange
       };
       for (let event of EVENTS) {
         this.bindEvent(event, handlers[event]);
@@ -160,11 +162,11 @@ export default {
       this.$emit("update:level", level);
       this.$emit("update:center", {
         lat: latlng.getLat(),
-        lng: latlng.getLng(),
+        lng: latlng.getLng()
       });
-    },
+    }
   },
-  MapTypeId: MapTypeId,
+  MapTypeId: MapTypeId
 };
 </script>
 

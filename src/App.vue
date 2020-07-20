@@ -1,8 +1,7 @@
 <template>
   <v-app id="app">
     <v-main>
-      <navigator v-bind:isLogin="isLogin" v-on:logout="onLogOut" />
-
+      <navigator v-bind:isLogin="isLogin" v-on:logout="onLogOut" v-if="!this.renderMap" />
       <router-view v-on:login="onLogin" v-bind:isLogin="isLogin" v-bind:email="email" />
     </v-main>
   </v-app>
@@ -22,14 +21,6 @@ export default {
     navigator
   },
   mounted() {
-    let script = document.createElement("script");
-
-    script.setAttribute(
-      "src",
-      `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.VUE_APP_KAKAO_KEY}&libraries=services,clusterer,drawing`
-    );
-    document.head.appendChild(script);
-
     try {
       let email = sessionStorage.getItem("login");
 
