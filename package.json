@@ -10,7 +10,9 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
+    "load-script-once": "^2.0.1",
     "vue": "^2.6.11",
+    "vue-naver-map": "^0.3.3",
     "vue-router": "^3.2.0",
     "vuetify": "^2.2.11"
   },

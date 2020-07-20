@@ -19,8 +19,7 @@
                 depressed
                 :ripple="false"
                 class="align-center justify-center"
-                >{{ menu.title }}</v-btn
-              >
+              >{{ menu.title }}</v-btn>
               <v-btn v-if="!isLogin" to="/login" text>로그인</v-btn>
               <v-btn v-else text @click="logout">로그아웃</v-btn>
             </v-flex>
@@ -38,27 +37,28 @@ export default {
     logout: function() {
       alert("try");
       this.$emit("logout");
-    },
+    }
   },
   props: {
     isLogin: {
-      type: Boolean,
-    },
+      type: Boolean
+    }
   },
-  data: () => ({
-    drawer: null,
-
-    menus: [
-      {
-        link: "/map",
-        title: "주방 찾기",
-      },
-      {
-        link: "/property",
-        title: "주방 공유하기",
-      },
-    ],
-  }),
+  data: function() {
+    return {
+      drawer: null,
+      menus: [
+        {
+          link: "/map",
+          title: "주방 찾기"
+        },
+        {
+          link: "/property",
+          title: "주방 공유하기"
+        }
+      ]
+    };
+  }
 };
 </script>
 <style scoped>
