@@ -1,7 +1,11 @@
 # oukitchen
 
+## Completed
+카카오 맵 렌더링
+
 ## Todo List
-카카오 맵 마커 
+카카오 맵 마커 테스트
+소셜 로그인
 
 ## Project setup
 ```
