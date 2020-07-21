@@ -53,6 +53,7 @@
           <v-btn
             class="right"
             @click="submit"
+            type="submit"
             dark
             color="rgba(0,153,255,0.7"
             :ripple="false"

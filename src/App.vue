@@ -1,12 +1,8 @@
 <template>
   <v-app id="app">
     <v-main>
-      <navigator v-bind:isLogin="isLogin" v-on:logout="onLogOut" />
-      <router-view
-        v-on:login="onLogin"
-        v-bind:isLogin="isLogin"
-        v-bind:email="email"
-      />
+      <navigator v-bind:isLogin="isLogin" v-on:logout="onLogOut" v-if="!this.renderMap" />
+      <router-view v-on:login="onLogin" v-bind:isLogin="isLogin" v-bind:email="email" />
     </v-main>
   </v-app>
 </template>
@@ -18,10 +14,11 @@ export default {
     return {
       isLogin: false,
       email: null,
+      renderMap: false
     };
   },
   components: {
-    navigator,
+    navigator
   },
   mounted() {
     try {
@@ -36,6 +33,11 @@ export default {
     }
   },
   methods: {
+    handleClicked: function(flag) {
+      console.log(flag);
+      if (flag) this.renderMap = true;
+      else this.renderMap = false;
+    },
     onLogin: function(email) {
       sessionStorage.setItem("login", email);
       this.email = email;
@@ -45,8 +47,14 @@ export default {
       alert("logout");
       sessionStorage.removeItem("login");
       this.isLogin = false;
-    },
+    }
   },
+  watch: {
+    $route(to) {
+      if (to.path.indexOf("map") !== -1) this.renderMap = true;
+      else this.renderMap = false;
+    }
+  }
 };
 </script>
 <style>

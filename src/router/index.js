@@ -4,10 +4,11 @@ import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Login from "../views/login";
 import SignUP from "../views/signUp";
+import map from "../views/map.vue"
+
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "Home",
     component: Home,
@@ -30,9 +31,15 @@ const routes = [
     name: "signin",
     component: SignUP,
   },
+  {
+    path: '/map',
+    name: "map",
+    component: map,
+  }
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
 });
 
