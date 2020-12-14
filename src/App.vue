@@ -1,13 +1,20 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="app">
+    <v-main>
+      <navigator />
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
-
+<script>
+import navigator from './components/Navigator.vue';
+//! GIST TEST
+export default {
+  components: {
+    navigator,
+  },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
